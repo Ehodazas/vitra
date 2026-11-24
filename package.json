@@ -2,7 +2,9 @@
   "name": "client-site-starter",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "node scripts/serve.mjs . 5173",
     "test:e2e": "playwright test",
@@ -12,8 +14,8 @@
     "qa:lh": "node scripts/lh.mjs"
   },
   "devDependencies": {
-    "@playwright/test": "^1",
-    "chrome-launcher": "^1",
-    "lighthouse": "^12"
+    "@playwright/test": "1.65.1",
+    "chrome-launcher": "1.2.3",
+    "lighthouse": "13.6.0"
   }
 }
