@@ -1,0 +1,40 @@
+.q-intro { padding-block: var(--s5) var(--s5); display: grid; gap: var(--s3); }
+.q-intro h1 { font-size: var(--step-4); }
+.q-intro .lead { margin: 0; }
+.q-grid { display: grid; gap: var(--s6); align-items: start; }
+.q-form { padding: 0; }
+.q-h { font-family: var(--font-display); font-size: var(--step-2); font-weight: 750; line-height: 1.1; margin-bottom: var(--s3); }
+.q-config { padding: var(--s4); border-bottom: var(--line-cut) solid var(--ink); background: var(--blue-wash); }
+.q-config .q-h { outline-offset: 2px; }
+.q-cfg { display: grid; gap: var(--s4); }
+.q-elev { --maxh: 150px; margin: 0; width: min(260px, calc(150px * var(--ar))); }
+.q-cfg-list { margin: 0; display: grid; gap: 4px; }
+.q-cfg-list div { display: grid; grid-template-columns: 9rem 1fr; gap: var(--s3); }
+.q-cfg-list dt { font-family: var(--font-note); font-weight: 650; color: var(--ink-2); }
+.q-cfg-list dd { margin: 0; }
+.q-cfg-actions { display: flex; flex-wrap: wrap; gap: var(--s4); align-items: center; margin: var(--s3) 0 0; }
+.q-cfg-actions a { font-weight: 650; min-height: 44px; display: inline-flex; align-items: center; }
+.q-fields { padding: var(--s4); display: grid; gap: var(--s4); }
+.q-two { display: grid; gap: var(--s4); }
+.q-fields .hint { margin: -8px 0 0; }
+.q-hp { position: absolute; left: -9999px; }
+.check { display: flex; gap: var(--s3); align-items: flex-start; font-weight: 500; }
+.check input { width: 24px; height: 24px; min-height: 0; padding: 0; margin: 1px 0 0; accent-color: var(--poche); flex: none; }
+.q-submit { display: flex; gap: var(--s4); align-items: center; flex-wrap: wrap; }
+.q-submit p { margin: 0; }
+.q-msg { padding: var(--s4); border: var(--line-cut) solid; }
+.q-ok { border-color: var(--blue); background: var(--blue-wash); }
+.q-bad { border-color: var(--error); background: #FBEDEA; color: var(--ink); }
+.q-side { display: grid; gap: var(--s5); }
+.q-steps { margin: 0; padding-left: 1.3em; display: grid; gap: var(--s2); }
+.q-contacts { margin: 0; border: var(--line-cut) solid var(--ink); background: var(--sheet); }
+.q-contacts > div { padding: var(--s3) var(--s4); }
+.q-contacts > div + div { border-top: var(--line-view) solid var(--ink); }
+.q-contacts dd { margin: 2px 0 0; font-weight: 600; font-size: var(--step-1); }
+.q-contacts a { color: var(--ink); min-height: 44px; display: inline-flex; align-items: center; }
+@media (min-width: 700px) { .q-two { grid-template-columns: 1fr 1fr; } .q-cfg { grid-template-columns: auto 1fr; } }
+@media (min-width: 900px) {
+  .q-intro { grid-template-columns: 6fr 6fr; align-items: end; padding-top: var(--s6); }
+  .q-grid { grid-template-columns: 8fr 4fr; }
+  .q-config, .q-fields { padding: var(--s5) var(--s6); }
+}

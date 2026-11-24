@@ -1,0 +1,49 @@
+<!--{"title":"Projektai: sumontuoti langai ir durys – VITRA","description":"Namų, butų ir komercinių pastatų projektai su PVC, medienos ir aliuminio langais bei durimis. Filtruokite pagal medžiagą, gaminį ir pastatą.","nav":"projektai","scripts":["js/gallery.js"],"styles":["css/gallery.css"]}-->
+<section class="wrap g-intro" aria-labelledby="h1">
+  <h1 id="h1">Projektai</h1>
+  <p class="lead">Prie kiekvieno projekto – pagrindinio lango brėžinys ir nuoroda sukonfigūruoti panašų. Visi projektai ir nuotraukos pavyzdiniai <span class="demo">[DEMO]</span>.</p>
+</section>
+
+<section class="wrap" aria-label="Filtrai">
+  <div class="filters sheet" data-testid="filters">
+    <div class="f-group" role="group" aria-labelledby="f-m"><span class="tb-k" id="f-m">Medžiaga</span>
+      <div class="f-opts" data-filter="medziaga">
+        <button type="button" aria-pressed="true" data-value="">Visos</button>
+        <button type="button" aria-pressed="false" data-value="pvc" data-testid="filter-option" data-dim="material">PVC</button>
+        <button type="button" aria-pressed="false" data-value="mediena" data-testid="filter-option" data-dim="material">Mediena</button>
+        <button type="button" aria-pressed="false" data-value="aliuminis" data-testid="filter-option" data-dim="material">Aliuminis</button>
+      </div></div>
+    <div class="f-group" role="group" aria-labelledby="f-p"><span class="tb-k" id="f-p">Gaminys</span>
+      <div class="f-opts" data-filter="gaminys">
+        <button type="button" aria-pressed="true" data-value="">Visi</button>
+        <button type="button" aria-pressed="false" data-value="langai" data-testid="filter-option" data-dim="product">Langai</button>
+        <button type="button" aria-pressed="false" data-value="durys" data-testid="filter-option" data-dim="product">Durys</button>
+      </div></div>
+    <div class="f-group" role="group" aria-labelledby="f-b"><span class="tb-k" id="f-b">Pastatas</span>
+      <div class="f-opts" data-filter="pastatas">
+        <button type="button" aria-pressed="true" data-value="">Visi</button>
+        <button type="button" aria-pressed="false" data-value="namas" data-testid="filter-option" data-dim="building">Namas</button>
+        <button type="button" aria-pressed="false" data-value="butas" data-testid="filter-option" data-dim="building">Butas</button>
+        <button type="button" aria-pressed="false" data-value="komercinis" data-testid="filter-option" data-dim="building">Komercinis</button>
+      </div></div>
+    <p class="f-count" aria-live="polite" data-testid="filter-count">Rodoma projektų: 11</p>
+  </div>
+</section>
+
+<section class="wrap section g-list" aria-label="Projektų sąrašas">
+  <div class="g-grid" data-gallery>
+<!--PROJECTS-->
+  </div>
+  <div class="g-empty sheet" data-testid="filter-empty" hidden>
+    <p><strong>Pagal šiuos filtrus projektų nėra.</strong> Pakeiskite filtrą arba rodykite visus.</p>
+    <button type="button" class="btn btn-line" data-testid="filter-reset">Rodyti visus</button>
+  </div>
+</section>
+
+<dialog class="g-dialog" id="projektas" aria-labelledby="dlg-title" data-testid="lightbox">
+  <div class="dlg-head">
+    <h2 id="dlg-title" class="dlg-title"></h2>
+    <button type="button" class="dlg-close" data-close aria-label="Uždaryti">Uždaryti</button>
+  </div>
+  <div class="dlg-body"></div>
+</dialog>

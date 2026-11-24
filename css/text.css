@@ -1,0 +1,6 @@
+.text-page { padding-block: var(--s6); max-width: calc(72ch + 2 * var(--gutter)); }
+.text-page h1 { font-size: var(--step-4); margin-bottom: var(--s4); }
+.text-page h2 { font-size: var(--step-2); margin: var(--s6) 0 var(--s3); }
+.text-page ul { padding-left: 1.2em; display: grid; gap: 4px; max-width: 66ch; }
+.text-page .credits a { min-height: 44px; display: inline-flex; align-items: center; }
+.text-page .btn { margin: 0 var(--s2) var(--s2) 0; }

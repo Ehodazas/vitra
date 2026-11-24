@@ -1,0 +1,117 @@
+<!--{"title":"Lango konfigūratorius ir orientacinė kaina – VITRA","description":"Nurodykite lango matmenis, medžiagą, spalvą ir atidarymą. Brėžinys perbraižomas iš karto, o kaina pateikiama su visu skaičiavimu.","nav":"konfiguratorius","scripts":["js/configurator.js"],"styles":["css/configurator.css"]}-->
+<section class="wrap cfg-intro" aria-labelledby="h1">
+  <h1 id="h1">Lango konfigūratorius</h1>
+  <p class="lead">Keiskite parametrus – brėžinys perbraižomas mastelyje, šalia stovi 1,75 m ūgio žmogus. Kaina orientacinė: galutinę nustatome po matavimo.</p>
+</section>
+<noscript><p class="wrap field-error">Konfigūratoriui reikia JavaScript. Matmenis galite nurodyti ir <a href="uzklausa.html">užklausos formoje</a>.</p></noscript>
+
+<form class="wrap cfg" id="cfg" data-testid="configurator" novalidate>
+  <div class="cfg-drawing sheet">
+    <div class="elev cfg-elev" data-testid="cfg-elev"><div class="elev-draw"><!--ELEV-INIT--></div></div>
+    <div class="cfg-strip">
+      <div><span class="tb-k">Orientacinė kaina su PVM ir montavimu</span>
+        <output class="cfg-price" data-testid="cfg-price" aria-live="off">—</output></div>
+      <p class="visually-hidden" role="status" data-price-status></p>
+      <a class="btn" href="uzklausa.html" data-testid="cfg-to-quote" data-quote-link>Siųsti užklausą</a>
+    </div>
+  </div>
+
+  <div class="cfg-controls">
+    <fieldset class="cfg-group">
+      <legend class="cfg-legend">Angos matmenys, mm</legend>
+      <div class="dims-grid">
+        <div class="field">
+          <label for="cfg-w">Plotis</label>
+          <div class="stepper"><button type="button" data-step="w" data-d="-10" aria-label="Plotis mažiau 10 mm">−</button><input id="cfg-w" name="w" type="text" inputmode="numeric" autocomplete="off" data-testid="cfg-w" aria-describedby="cfg-w-hint cfg-w-err"><button type="button" data-step="w" data-d="10" aria-label="Plotis daugiau 10 mm">+</button></div>
+          <span class="hint" id="cfg-w-hint" data-range="w"></span>
+          <span class="field-error" id="cfg-w-err" data-err="w" data-testid="cfg-w-error"></span>
+        </div>
+        <div class="field">
+          <label for="cfg-h">Aukštis</label>
+          <div class="stepper"><button type="button" data-step="h" data-d="-10" aria-label="Aukštis mažiau 10 mm">−</button><input id="cfg-h" name="h" type="text" inputmode="numeric" autocomplete="off" data-testid="cfg-h" aria-describedby="cfg-h-hint cfg-h-err"><button type="button" data-step="h" data-d="10" aria-label="Aukštis daugiau 10 mm">+</button></div>
+          <span class="hint" id="cfg-h-hint" data-range="h"></span>
+          <span class="field-error" id="cfg-h-err" data-err="h" data-testid="cfg-h-error"></span>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="cfg-group">
+      <legend class="cfg-legend">Medžiaga</legend>
+      <div class="choices" data-testid="cfg-material">
+        <label class="choice"><input type="radio" name="m" value="pvc"><span>PVC</span></label>
+        <label class="choice"><input type="radio" name="m" value="mediena"><span>Mediena</span></label>
+        <label class="choice"><input type="radio" name="m" value="aliuminis"><span>Aliuminis</span></label>
+      </div>
+      <p class="hint"><a href="medziagos.html">Kuo skiriasi medžiagos?</a></p>
+    </fieldset>
+
+    <fieldset class="cfg-group">
+      <legend class="cfg-legend">Spalva</legend>
+      <div class="choices choices-col" data-colours data-testid="cfg-colours"></div>
+    </fieldset>
+
+    <fieldset class="cfg-group">
+      <legend class="cfg-legend">Varčių skaičius</legend>
+      <div class="choices" data-testid="cfg-sashes">
+        <label class="choice"><input type="radio" name="s" value="1"><span>1</span></label>
+        <label class="choice"><input type="radio" name="s" value="2"><span>2</span></label>
+        <label class="choice"><input type="radio" name="s" value="3"><span>3</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="cfg-group">
+      <legend class="cfg-legend">Atidarymas</legend>
+      <p class="hint">Varčios numeruojamos iš kairės, žiūrint iš patalpos vidaus.</p>
+      <div class="sash-list" data-sashes></div>
+      <span class="field-error" data-err="o" data-testid="cfg-o-error"></span>
+    </fieldset>
+
+    <fieldset class="cfg-group">
+      <legend class="cfg-legend">Stiklo paketas</legend>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="g" value="2"><span>2 stiklų</span></label>
+        <label class="choice"><input type="radio" name="g" value="3"><span>3 stiklų</span></label>
+      </div>
+    </fieldset>
+
+    <div class="cfg-group field">
+      <label for="cfg-q" class="cfg-legend">Kiekis, vnt.</label>
+      <input id="cfg-q" name="q" type="text" inputmode="numeric" autocomplete="off" class="qty" data-testid="cfg-q" aria-describedby="cfg-q-err">
+      <span class="field-error" id="cfg-q-err" data-err="q"></span>
+    </div>
+  </div>
+</form>
+
+<section class="wrap section cfg-calc" aria-labelledby="skaiciavimas">
+  <div class="section-head">
+    <h2 id="skaiciavimas">Kaip skaičiuojame</h2>
+    <p>Kiekviena kainos eilutė parodyta atskirai. Įkainiai pavyzdiniai <span class="demo">[DEMO]</span> – jie skirti pademonstruoti skaičiavimą, ne pasiūlymui.</p>
+  </div>
+  <div class="calc-grid">
+    <div class="sheet calc-sheet">
+      <table class="calc" data-testid="cfg-breakdown">
+        <caption class="visually-hidden">Orientacinės kainos skaičiavimas</caption>
+        <thead><tr><th scope="col">Eilutė</th><th scope="col" class="num">Suma, €</th></tr></thead>
+        <tbody data-lines><tr><td colspan="2">Įveskite tinkamus matmenis.</td></tr></tbody>
+        <tfoot data-totals></tfoot>
+      </table>
+    </div>
+    <div class="calc-side">
+      <h3>Į kainą neįskaičiuota</h3>
+      <ul class="plain-list">
+        <li>senų langų išmontavimas ir išvežimas;</li>
+        <li>palangės, nuolajos ir vidaus apdaila;</li>
+        <li>angų platinimas ar kiti statybos darbai;</li>
+        <li>transportas toliau nei 50 km nuo Kauno ar Vilniaus <span class="demo">[DEMO]</span>.</li>
+      </ul>
+      <h3>Kodėl intervalas</h3>
+      <p>Tiksli kaina priklauso nuo sienos konstrukcijos, montavimo būdo ir išmatuotų angų. Rodome ±15 % intervalą aplink apskaičiuotą sumą, suapvalintą iki 10 €.</p>
+      <div class="calc-actions">
+        <a class="btn" href="uzklausa.html" data-quote-link>Siųsti užklausą su šia konfigūracija</a>
+        <button type="button" class="btn btn-line" data-copy>Kopijuoti nuorodą</button>
+        <button type="button" class="btn-link" data-reset>Pradėti iš naujo</button>
+        <p class="hint" data-copy-status role="status"></p>
+      </div>
+    </div>
+  </div>
+</section>

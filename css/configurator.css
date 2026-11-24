@@ -1,0 +1,60 @@
+/* Configurator: sticky drawing sheet + control schedule; calculation sheet */
+.cfg-intro { padding-block: var(--s5) var(--s4); display: grid; gap: var(--s3); }
+.cfg-intro h1 { font-size: var(--step-4); }
+.cfg-intro .lead { margin: 0; }
+.cfg { display: grid; gap: var(--s5); align-items: start; }
+.cfg-drawing { position: sticky; top: 56px; z-index: 5; padding: var(--s3) var(--s3) 0; }
+.cfg-elev { --maxh: 20svh; }
+@media (max-width: 899px) {
+  .cfg { padding-inline: 0; }
+  .cfg-drawing { border-inline: 0; }
+  .cfg-controls { border-inline: 0; }
+  .cfg-strip .tb-k { font-size: 0.8rem; }
+  .cfg-intro .lead { font-size: var(--step-0); }
+}
+.cfg-strip { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin: var(--s3) calc(-1 * var(--s3)) 0; padding: var(--s3); border-top: var(--line-cut) solid var(--ink); background: var(--sheet); }
+.cfg-price { display: block; font-family: var(--font-display); font-weight: 750; font-size: var(--step-3); line-height: 1; white-space: nowrap; }
+.cfg-strip .btn { flex: none; padding-inline: var(--s4); }
+.btn[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
+
+.cfg-controls { display: grid; gap: 0; border: var(--line-cut) solid var(--ink); background: var(--sheet); }
+.cfg-group { padding: var(--s4); }
+.cfg-group + .cfg-group { border-top: var(--line-view) solid var(--ink); }
+.cfg-legend { font-family: var(--font-display); font-size: var(--step-2); font-weight: 750; line-height: 1.1; margin-bottom: var(--s2); display: block; }
+.dims-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
+.stepper { display: grid; grid-template-columns: 44px 1fr 44px; border: var(--line-view) solid var(--ink); background: var(--sheet); }
+.stepper button { min-height: 48px; border: 0; background: var(--paper); font-size: 1.4rem; font-weight: 600; cursor: pointer; }
+.stepper button:hover { background: var(--blue-wash); }
+.stepper input { min-width: 0; width: 100%; border: 0; border-inline: var(--line-dim) solid var(--ink); text-align: center; font: 700 1.3rem var(--font-note); color: var(--blue); background: var(--sheet); min-height: 48px; }
+.stepper:has(input[aria-invalid="true"]) { border-color: var(--error); border-width: 2px; }
+.stepper input[aria-invalid="true"] { color: var(--error); }
+.choices-col { flex-direction: column; }
+.choices-col .choice span { width: 100%; }
+.choice small { font-weight: 500; opacity: 0.8; }
+.sash-list { display: grid; gap: var(--s3); }
+.qty { max-width: 8rem; font: 700 1.2rem var(--font-note); }
+
+.calc-grid { display: grid; gap: var(--s6); }
+.calc-sheet { padding: 0; overflow-x: auto; }
+.calc th, .calc td { padding: var(--s3) var(--s4); vertical-align: top; }
+.calc thead th { border-bottom: var(--line-cut) solid var(--ink); background: var(--paper); }
+.calc tbody tr + tr td { border-top: var(--line-dim) solid rgba(34, 37, 40, 0.35); }
+.calc tfoot tr:first-child > * { border-top: var(--line-view) solid var(--ink); }
+.calc tfoot th { font-family: var(--font-body); font-weight: 500; font-size: var(--step-0); }
+.calc .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.calc-total > * { border-top: var(--line-cut) solid var(--ink); font-weight: 700 !important; }
+.calc-range > * { background: var(--blue-wash); color: var(--blue); font-weight: 700 !important; }
+.calc-side h3 { margin: 0 0 var(--s3); }
+.calc-side h3 + * { margin-bottom: var(--s5); }
+.plain-list { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; max-width: 60ch; }
+.calc-actions { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: center; }
+
+@media (min-width: 900px) {
+  .cfg-intro { grid-template-columns: 6fr 6fr; align-items: end; padding-top: var(--s6); }
+  .cfg { grid-template-columns: 7fr 5fr; gap: var(--s5); }
+  .cfg-drawing { top: 84px; padding: var(--s5) var(--s5) 0; }
+  .cfg-elev { --maxh: 52svh; }
+  .cfg-strip { margin: var(--s5) calc(-1 * var(--s5)) 0; padding: var(--s4) var(--s5); }
+  .cfg-group { padding: var(--s5); }
+  .calc-grid { grid-template-columns: 7fr 5fr; }
+}

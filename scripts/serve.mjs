@@ -14,9 +14,9 @@ const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 
   '.gif': 'image/gif', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.woff': 'font/woff', '.txt': 'text/plain', '.xml': 'application/xml', '.pdf': 'application/pdf' };
 
 // Never served: dotfiles/dirs, dependencies, QA/test infrastructure and project config.
-const PRIVATE_DIRS = new Set(['node_modules', 'tests']);
-const QA_SCRIPTS = /^scripts\/(gate|shot|lh|serve)\.mjs$/; // site JS in scripts/ stays public
-const PRIVATE_FILES = /^(package(-lock)?\.json|qa\.config\.json|playwright\.config\.[cm]?js|DESIGN\.md|CLAUDE\.md|.*\.config\.[cm]?[jt]s)$/i;
+const PRIVATE_DIRS = new Set(['node_modules', 'tests', 'src']);
+const QA_SCRIPTS = /^scripts\/(gate|shot|lh|serve|pages)\.mjs$/; // site JS in scripts/ stays public
+const PRIVATE_FILES = /^(package(-lock)?\.json|qa\.config\.json|playwright\.config\.[cm]?js|DESIGN\.md|PRODUCT\.md|CLAUDE\.md|.*\.config\.[cm]?[jt]s)$/i;
 const isPrivate = rel => { const parts = rel.split(/[\\/]/).filter(p => p && p !== '.');
   return parts.some(p => p.startsWith('.') || PRIVATE_DIRS.has(p)) || PRIVATE_FILES.test(parts.at(-1) || '') || QA_SCRIPTS.test(parts.join('/')); };
 

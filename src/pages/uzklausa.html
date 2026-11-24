@@ -1,0 +1,90 @@
+<!--{"title":"Užklausa ir matavimo užsakymas – VITRA","description":"Užsakykite angų matavimą ir pridėkite konfigūratoriuje sudarytą langą. Po matavimo parengiame žiniaraštį su tikslia kaina.","nav":"uzklausa","scripts":["js/quote.js"],"styles":["css/quote.css"]}-->
+<section class="wrap q-intro" aria-labelledby="h1">
+  <h1 id="h1">Užklausa ir matavimas</h1>
+  <p class="lead">Parašykite, kur ir kokius langus ar duris planuojate. Susisiekę suderinsime matavimo laiką; po matavimo gausite žiniaraštį su tikslia kaina.</p>
+</section>
+
+<div class="wrap q-grid">
+  <form class="q-form sheet" data-testid="quote-form" method="post" data-endpoint="" novalidate>
+    <section class="q-config" data-testid="quote-config" aria-labelledby="q-config-h">
+      <h2 id="q-config-h" class="q-h" tabindex="-1">Pridėta konfigūracija</h2>
+      <div data-config-body>
+        <p class="muted" data-config-empty>Konfigūracija nepridėta. <a href="konfiguratorius.html">Sudarykite langą konfigūratoriuje</a> arba aprašykite angas žinutėje.</p>
+      </div>
+      <input type="hidden" name="konfiguracija" value="">
+      <input type="hidden" name="konfiguracijos_nuoroda" value="">
+      <input type="hidden" name="orientacine_kaina" value="">
+    </section>
+
+    <fieldset class="q-fields">
+      <legend class="q-h">Jūsų duomenys</legend>
+      <div class="field">
+        <label for="q-name">Vardas</label>
+        <input id="q-name" name="vardas" autocomplete="name" required aria-describedby="q-name-err">
+        <span class="field-error" id="q-name-err" data-testid="form-error"></span>
+      </div>
+      <div class="q-two">
+        <div class="field">
+          <label for="q-phone">Telefonas</label>
+          <input id="q-phone" name="telefonas" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="q-contact-hint q-phone-err">
+          <span class="field-error" id="q-phone-err" data-testid="form-error"></span>
+        </div>
+        <div class="field">
+          <label for="q-email">El. paštas</label>
+          <input id="q-email" name="email" type="email" autocomplete="email" aria-describedby="q-contact-hint q-email-err">
+          <span class="field-error" id="q-email-err" data-testid="form-error"></span>
+        </div>
+      </div>
+      <p class="hint" id="q-contact-hint">Nurodykite telefoną arba el. paštą – užtenka vieno.</p>
+      <div class="q-two">
+        <div class="field">
+          <label for="q-city">Objekto vieta</label>
+          <input id="q-city" name="vieta" autocomplete="address-level2" placeholder="Pvz., Kaunas, Kauno r.">
+        </div>
+        <div class="field">
+          <label for="q-stage">Projekto etapas</label>
+          <select id="q-stage" name="etapas">
+            <option value="">Pasirinkite</option>
+            <option>Statau naują namą</option>
+            <option>Keičiu senus langus</option>
+            <option>Renovuoju butą ar namą</option>
+            <option>Komercinis objektas</option>
+            <option>Kita</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="q-msg">Žinutė</label>
+        <textarea id="q-msg" name="zinute" rows="5" placeholder="Pvz., 6 langai ir balkono durys, siena – mūras su apšiltinimu."></textarea>
+      </div>
+      <div class="q-hp" aria-hidden="true"><label>Nepildykite šio laukelio <input name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+      <div class="field q-consent">
+        <label class="check"><input type="checkbox" name="sutikimas" value="taip" data-testid="consent" aria-describedby="q-consent-err"> <span>Sutinku, kad pateikti duomenys būtų naudojami atsakyti į šią užklausą. <a href="privatumas.html">Privatumo pranešimas</a></span></label>
+        <span class="field-error" id="q-consent-err" data-testid="form-error"></span>
+      </div>
+      <div class="q-submit">
+        <button class="btn" type="submit" data-testid="quote-submit">Siųsti užklausą</button>
+        <p class="hint" data-sending role="status"></p>
+      </div>
+      <div class="q-msg q-ok" data-testid="form-success" role="status" hidden tabindex="-1">
+        <strong>Užklausą gavome.</strong> Susisieksime darbo dieną ir suderinsime matavimo laiką.
+      </div>
+      <div class="q-msg q-bad" data-testid="form-error-server" role="alert" hidden tabindex="-1"></div>
+    </fieldset>
+    <noscript><p class="field-error">Formai siųsti reikia JavaScript. Skambinkite <a href="tel:+37060000000">+370 600 00000</a> <span class="demo">[DEMO]</span>.</p></noscript>
+  </form>
+
+  <aside class="q-side" aria-labelledby="q-side-h">
+    <h2 id="q-side-h" class="q-h">Kas vyksta toliau</h2>
+    <ol class="q-steps">
+      <li>Susisiekiame ir suderiname matavimo laiką.</li>
+      <li>Išmatuojame angas ir aptariame sprendimus vietoje.</li>
+      <li>Atsiunčiame žiniaraštį su brėžiniais ir tikslia kaina.</li>
+    </ol>
+    <dl class="q-contacts">
+      <div><dt class="tb-k">Telefonas <span class="demo">[DEMO]</span></dt><dd><a href="tel:+37060000000">+370 600 00000</a></dd></div>
+      <div><dt class="tb-k">El. paštas <span class="demo">[DEMO]</span></dt><dd><a href="mailto:info@vitra.example">info@vitra.example</a></dd></div>
+      <div><dt class="tb-k">Gamykla <span class="demo">[DEMO]</span></dt><dd>Pramonės g. 0, Kaunas</dd></div>
+    </dl>
+  </aside>
+</div>

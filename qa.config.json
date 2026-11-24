@@ -1,15 +1,15 @@
 {
-  "mode": "client",
+  "mode": "demo",
   "basePath": "/",
-  "pages": [""],
-  "requiredFeatures": ["@navigation", "@contact-form"],
-  "integrationFeatures": ["@contact-form"],
+  "pages": ["", "konfiguratorius.html", "medziagos.html", "projektai.html", "uzklausa.html", "privatumas.html", "saltiniai.html"],
+  "requiredFeatures": ["@navigation", "@configurator", "@pricing", "@materials", "@gallery", "@quote-form", "@config-handoff", "@mobile"],
+  "integrationFeatures": ["@quote-form"],
   "integration": {
     "endpointHost": "formspree.io",
     "testEmailPattern": "\\+qa@|^qa@",
     "clientEmails": []
   },
-  "preview": { "build": null, "serve": "node scripts/serve.mjs . 4173", "url": "http://127.0.0.1:4173" },
-  "lighthouseMin": { "performance": 85, "accessibility": 90, "best-practices": 90, "seo": 90 },
+  "preview": { "build": "node scripts/pages.mjs", "serve": "node scripts/serve.mjs . 4173", "url": "http://127.0.0.1:4173" },
+  "lighthouseMin": { "performance": 90, "accessibility": 90, "best-practices": 90, "seo": 90 },
   "sourceDirs": ["."]
 }

@@ -16,7 +16,7 @@ for (const path of PAGES) {
     await expect(page).toHaveTitle(/\S{3,}/);
     await expect(page.locator('h1')).toHaveCount(1);
     expect(await page.getAttribute('html', 'lang')).toMatch(/^lt/);
-    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /\S{20,}/);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /\S.{18,}\S/); // at least ~20 characters
     expect(errors, 'console/JS/HTTP errors').toEqual([]);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow, 'horizontal scroll').toBeLessThanOrEqual(1);
