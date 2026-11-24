@@ -1,107 +1,109 @@
-<!--{"title":"VITRA – langai ir durys pagal jūsų angos matmenis","description":"PVC, medienos ir aliuminio langai bei durys. Įveskite angos matmenis, pamatykite lango brėžinį ir orientacinę kainą su visu skaičiavimu.","nav":"home","preload":"assets/img/namas-sodas-800.webp","scripts":["js/home.js"],"styles":["css/home.css"]}-->
+<!--{"title":"VITRA – PVC, mediniai ir aliuminio langai bei durys","description":"Langų ir durų gamyba ir montavimas: trys langų sistemos, lauko ir terasos durys, konfigūratorius su orientacine kaina ir matavimas vietoje.","nav":"home","tilt":true,"preload":"assets/img/svetaine-baltas-720.webp","preloadSrcset":"assets/img/svetaine-baltas-720.webp 720w, assets/img/svetaine-baltas-960.webp 960w, assets/img/svetaine-baltas-1400.webp 1400w","preloadSizes":"(min-width: 900px) 40vw, 80vw","scripts":["js/home.js"],"styles":["css/home.css"]}-->
 <section class="hero wrap" aria-labelledby="h1">
-  <div class="hero-sheet sheet">
-    <h1 id="h1">Langai ir durys pagal jūsų angos matmenis</h1>
-    <p class="lead hero-lead">Gaminame ir montuojame PVC, medienos ir aliuminio langus bei duris <span class="demo">[DEMO]</span>. Įrašykite savo angos plotį ir aukštį brėžinyje – pamatysite, kaip atrodys langas ir kiek jis orientaciniai kainuotų.</p>
-    <form class="hero-form" action="konfiguratorius.html" method="get" data-testid="hero-form" novalidate>
-      <div class="hero-draw">
-        <!--ELEV {"cfg":{"w":1480,"h":1460,"m":"pvc","s":3,"o":["kl","n","kr"]},"opts":{"editable":true,"photo":{"href":"assets/img/namas-sodas-800.webp"},"title":"Trijų dalių lango brėžinys, stikluose – namo nuotrauka"},"cls":"hero-elev","inputs":true,"testid":"hero-elev"}-->
-        <p class="hint hero-hint">Spustelėkite mėlynus skaičius ir įrašykite savo angos matmenis milimetrais.</p>
-        <p class="field-error" id="hero-error" role="alert" data-testid="hero-error"></p>
-      </div>
-      <div class="hero-tb">
-        <fieldset class="tb-cell">
-          <legend class="tb-k">Medžiaga</legend>
-          <div class="choices">
-            <label class="choice"><input type="radio" name="m" value="pvc" checked><span>PVC</span></label>
-            <label class="choice"><input type="radio" name="m" value="mediena"><span>Mediena</span></label>
-            <label class="choice"><input type="radio" name="m" value="aliuminis"><span>Aliuminis</span></label>
-          </div>
-        </fieldset>
-        <div class="tb-cell">
-          <span class="tb-k">Orientacinė kaina su PVM ir montavimu</span>
-          <output class="tb-price" data-testid="hero-price" aria-live="polite">nuo matmenų</output>
-          <span class="hint">Trijų dalių langas, 3 stiklų paketas, 1 vnt. Galutinė kaina – po matavimo.</span>
+  <h1 id="h1" class="hero-h1">Langai ir durys, pagaminti jūsų namui</h1>
+  <div class="hero-copy">
+    <p class="lead">PVC, medienos ir aliuminio langai bei durys. Gaminame pagal išmatuotas angas ir sumontuojame patys <span class="demo">[DEMO]</span>.</p>
+    <ul class="hero-entries">
+      <li><a class="entry" href="langai.html" data-testid="entry-langai">
+        <img src="assets/img/thumb-langai-160.webp" width="160" height="160" alt="" decoding="async">
+        <span><span class="entry-name">Langai</span><span class="muted">Norma · Silva · Lumen</span></span></a></li>
+      <li><a class="entry" href="durys.html" data-testid="entry-durys">
+        <img src="assets/img/thumb-durys-160.webp" width="160" height="160" alt="" decoding="async">
+        <span><span class="entry-name">Durys</span><span class="muted">Lauko, terasos, balkono</span></span></a></li>
+    </ul>
+  </div>
+  <div class="hero-window">
+    <div class="frame" data-testid="hero-frame" style="--frame:#F4F4F0">
+      <div class="sash" data-sash>
+        <div class="pane">
+          <img src="assets/img/svetaine-baltas-720.webp" srcset="assets/img/svetaine-baltas-720.webp 720w, assets/img/svetaine-baltas-960.webp 960w, assets/img/svetaine-baltas-1400.webp 1400w" sizes="(min-width: 900px) 40vw, 80vw" width="1400" height="1750" alt="Šviesus kambarys su dideliu skaidytu langu į medžius" fetchpriority="high" decoding="async">
         </div>
-        <div class="tb-cell tb-action">
-          <input type="hidden" name="s" value="3"><input type="hidden" name="o" value="kl,n,kr"><input type="hidden" name="g" value="3"><input type="hidden" name="q" value="1">
-          <button class="btn" type="submit" data-testid="hero-submit">Apskaičiuoti kainą</button>
-          <span class="hint">Konfigūratoriuje pakeisite spalvą, varčias ir atidarymą.</span>
-        </div>
+        <span class="handle" aria-hidden="true"></span>
       </div>
+    </div>
+    <div class="sill" aria-hidden="true"></div>
+    <div class="hero-swatches">
+      <div class="sw-group" data-swatches data-target="hero">
+        <span class="tb-k" id="sw-hero">Rėmo spalva</span>
+        <ul class="swatches" aria-labelledby="sw-hero">
+          <li><button type="button" class="swatch-btn" style="--sw:#F4F4F0" data-hex="#F4F4F0" data-name="Balta RAL 9016" aria-pressed="true" data-testid="swatch"><span class="visually-hidden">Balta RAL 9016</span></button></li>
+          <li><button type="button" class="swatch-btn" style="--sw:#3B4045" data-hex="#3B4045" data-name="Antracitas RAL 7016" aria-pressed="false" data-testid="swatch"><span class="visually-hidden">Antracitas RAL 7016</span></button></li>
+          <li><button type="button" class="swatch-btn" style="--sw:#A8743F" data-hex="#A8743F" data-name="Auksinis ąžuolas" aria-pressed="false" data-testid="swatch"><span class="visually-hidden">Auksinis ąžuolas</span></button></li>
+        </ul>
+        <p class="swatch-name" aria-live="polite">Balta RAL 9016</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap series" aria-labelledby="sistemos">
+  <div class="series-head">
+    <h2 id="sistemos">Trys langų sistemos</h2>
+    <p>Skirtingos medžiagos skirtingiems namams. Pasirinkite spalvą – langas persidažys čia pat.</p>
+    <a class="arrow-link" href="langai.html">Visi langai ir palyginimas</a>
+  </div>
+  <div class="series-band">
+    <!--SERIES-BAND-->
+  </div>
+</section>
+
+<section class="band-dark" aria-labelledby="kaina">
+  <div class="wrap band-grid">
+    <div class="band-types">
+      <h2 id="kaina">Kaina pagal jūsų angą</h2>
+      <p>Pasirinkite atidarymo tipą arba įrašykite matmenis – konfigūratorius parodys brėžinį ir orientacinę kainą su visu skaičiavimu.</p>
+      <ul class="type-grid"><!--TYPES--></ul>
+    </div>
+    <form class="teaser" action="konfiguratorius.html" method="get" data-testid="hero-form" novalidate>
+      <div class="teaser-draw">
+        <!--ELEV {"cfg":{"w":1480,"h":1460,"m":"pvc","s":3,"o":["kl","n","kr"]},"opts":{"editable":true,"title":"Trijų dalių lango brėžinys"},"cls":"teaser-elev","inputs":true,"testid":"hero-elev"}-->
+      </div>
+      <p class="field-error" id="hero-error" role="alert" data-testid="hero-error"></p>
+      <div class="teaser-row">
+        <div><span class="tb-k">Orientacinė kaina su PVM ir montavimu</span>
+          <output class="teaser-price" data-testid="hero-price" aria-live="off">790–1 070 €</output></div>
+        <input type="hidden" name="m" value="pvc"><input type="hidden" name="s" value="3"><input type="hidden" name="o" value="kl,n,kr"><input type="hidden" name="g" value="3"><input type="hidden" name="q" value="1">
+        <button class="btn" type="submit" data-testid="hero-submit">Apskaičiuoti kainą</button>
+      </div>
+      <p class="hint">PVC, trijų dalių, 3 stiklų paketas. Galutinė kaina – po matavimo.</p>
     </form>
   </div>
 </section>
 
-<section class="section wrap" aria-labelledby="ziniarastis">
-  <div class="section-head">
-    <h2 id="ziniarastis">Visi namo langai vienoje lentelėje</h2>
-    <p>Po matavimo gaunate langų žiniaraštį: kiekviena anga turi žymę, matmenis, medžiagą ir atidarymo schemą. Žemiau – pavyzdinio vienaukščio namo žiniaraštis <span class="demo">[DEMO]</span>. Bet kurį tipą galite atidaryti konfigūratoriuje.</p>
+<section class="section wrap doors-feature" aria-labelledby="durys-h">
+  <figure class="df-photo" data-reveal="up">
+    <img src="assets/img/durys-slankiojamos-640.webp" srcset="assets/img/durys-slankiojamos-640.webp 640w, assets/img/durys-slankiojamos-1200.webp 1200w" sizes="(min-width: 900px) 40vw, 100vw" width="1200" height="1500" alt="Stiklinės slankiojamos durys į kiemą" loading="lazy" decoding="async">
+  </figure>
+  <div class="df-text">
+    <h2 id="durys-h">Durys</h2>
+    <p>Lauko durys su daugiataške spyna, didelės slankiojamos durys į terasą ir balkono durys, suderintos su langais.</p>
+    <ul class="df-list">
+      <li><a href="durys.html#porta"><span class="df-name">Porta</span><span class="muted">Lauko durys</span></a></li>
+      <li><a href="durys.html#terra"><span class="df-name">Terra</span><span class="muted">Slankiojamos terasos durys</span></a></li>
+      <li><a href="durys.html#aura"><span class="df-name">Aura</span><span class="muted">Balkono durys</span></a></li>
+    </ul>
   </div>
-  <div class="sheet schedule-sheet">
-    <!--SCHEDULE-->
-    <p class="schedule-legend hint">Atidarymo ženklai brėžiniuose: trikampio smaigalys rodo vyrių pusę. Varst. – varstoma, verč. – verčiama, K / D – vyriai kairėje / dešinėje, žiūrint iš vidaus.</p>
-  </div>
+  <figure class="df-detail" data-reveal="left">
+    <img src="assets/img/detale-rankena-zalvaris-640.webp" width="1000" height="1000" alt="Žalvarinė rankena ant baltos varčios" loading="lazy" decoding="async">
+  </figure>
 </section>
 
-<section class="section wrap materials-legend" aria-labelledby="medziagos">
-  <div class="ml-head">
-    <h2 id="medziagos">Trys medžiagos – trys skirtingi kompromisai</h2>
-    <p>Brėžiniuose medžiagos žymimos skirtingu užbrūkšniavimu. Taip jas pažymėjome ir čia – su svarbiausiu skirtumu kiekvienai.</p>
-    <a class="btn btn-line" href="medziagos.html">Palyginti medžiagas</a>
+<section class="section wrap home-projects" aria-labelledby="projektai-h">
+  <div class="hp-head">
+    <h2 id="projektai-h">Projektai</h2>
+    <a class="arrow-link" href="projektai.html">Visi projektai</a>
   </div>
-  <dl class="ml-list">
-    <div class="ml-row"><dt><svg class="ml-hatch" viewBox="0 0 120 120" aria-hidden="true"><use href="#h-pvc"/></svg><span>PVC</span></dt><dd>Mažiausia kaina ir paprasta priežiūra. Profilis platesnis, spalvos – laminuota plėvelė.</dd><dd><a href="konfiguratorius.html?m=pvc">Konfigūruoti iš PVC</a></dd></div>
-    <div class="ml-row"><dt><svg class="ml-hatch" viewBox="0 0 120 120" aria-hidden="true"><use href="#h-mediena"/></svg><span>Mediena</span></dt><dd>Šilta medžiagos išvaizda, pažeidimus galima atnaujinti. Dangą reikia periodiškai atnaujinti.</dd><dd><a href="konfiguratorius.html?m=mediena">Konfigūruoti iš medienos</a></dd></div>
-    <div class="ml-row"><dt><svg class="ml-hatch" viewBox="0 0 120 120" aria-hidden="true"><use href="#h-aliuminis"/></svg><span>Aliuminis</span></dt><dd>Ploniausi rėmai ir didžiausi matmenys, tinka slankiojamoms sistemoms. Brangiausias pasirinkimas.</dd><dd><a href="konfiguratorius.html?m=aliuminis">Konfigūruoti iš aliuminio</a></dd></div>
-  </dl>
-  <svg width="0" height="0" class="visually-hidden" aria-hidden="true">
-    <defs>
-      <pattern id="p-pvc" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M0 16 L16 0 M-4 4 L4 -4 M12 20 L20 12 M0 0 L16 16" stroke="#222528" stroke-width="1.2"/></pattern>
-      <pattern id="p-mediena" width="120" height="22" patternUnits="userSpaceOnUse"><path d="M0 11 C 20 3, 40 19, 60 11 S 100 3, 120 11" fill="none" stroke="#222528" stroke-width="1.4"/></pattern>
-      <pattern id="p-aliuminis" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 8 L8 0 M-2 2 L2 -2 M6 10 L10 6" stroke="#222528" stroke-width="1.2"/></pattern>
-      <g id="h-pvc"><rect x="1.5" y="1.5" width="117" height="117" fill="url(#p-pvc)" stroke="#222528" stroke-width="3"/></g>
-      <g id="h-mediena"><rect x="1.5" y="1.5" width="117" height="117" fill="url(#p-mediena)" stroke="#222528" stroke-width="3"/></g>
-      <g id="h-aliuminis"><rect x="1.5" y="1.5" width="117" height="117" fill="url(#p-aliuminis)" stroke="#222528" stroke-width="3"/></g>
-    </defs>
-  </svg>
+  <div class="pm"><!--HOME-PROJECTS--></div>
 </section>
 
-<section class="section wrap" aria-labelledby="projektai">
-  <div class="section-head">
-    <h2 id="projektai">Sumontuoti langai: nuotrauka ir brėžinys</h2>
-    <p>Prie kiekvieno projekto – pagrindinio lango schema, kad matytumėte, kaip padalyta anga. Visi projektai pavyzdiniai <span class="demo">[DEMO]</span>.</p>
+<section class="wrap contact-strip" aria-labelledby="matavimas">
+  <div class="cs-main">
+    <h2 id="matavimas">Užsakykite matavimą</h2>
+    <p>Atvažiuojame, išmatuojame angas ir parengiame pasiūlymą su tikslia kaina. Galite pridėti konfigūratoriuje sudarytą langą.</p>
   </div>
-  <div class="hp-grid">
-    <!--HOME-PROJECTS-->
-  </div>
-  <p class="hp-more"><a href="projektai.html">Visi projektai su filtrais</a></p>
-</section>
-
-<section class="section wrap" aria-labelledby="terminai">
-  <div class="section-head">
-    <h2 id="terminai">Nuo matavimo iki montavimo</h2>
-    <p>Laikas pažymėtas kaip matmenų grandinė: kiekvieno etapo ilgis atitinka jo trukmę. Terminai pavyzdiniai <span class="demo">[DEMO]</span> ir priklauso nuo užsakymo dydžio.</p>
-  </div>
-  <ol class="timeline" aria-label="Užsakymo etapai">
-    <li style="--d:1"><span class="tl-len">1 d.</span><strong>Matavimas</strong><span>Atvažiuojame, išmatuojame angas ir aptariame sprendimus vietoje.</span></li>
-    <li style="--d:5"><span class="tl-len">iki 5 d. d.</span><strong>Žiniaraštis ir kaina</strong><span>Parengiame žiniaraštį su brėžiniais ir tikslia kaina. Gaminti pradedame tik jums patvirtinus.</span></li>
-    <li style="--d:35"><span class="tl-len">4–6 sav.</span><strong>Gamyba</strong><span>Gaminame pagal patvirtintus brėžinius.</span></li>
-    <li style="--d:2"><span class="tl-len">1–2 d.</span><strong>Montavimas</strong><span>Išmontuojame senus langus, sumontuojame naujus ir sutvarkome darbo vietą.</span></li>
-  </ol>
-</section>
-
-<section class="section wrap" aria-labelledby="matavimas">
-  <div class="close sheet">
-    <div class="close-main">
-      <h2 id="matavimas">Užsakykite matavimą</h2>
-      <p class="lead">Tiksli kaina priklauso nuo angų, sienos ir montavimo sąlygų, todėl ją nustatome tik išmatavę. Užklausoje galite pridėti konfigūratoriuje sudarytą langą.</p>
-      <a class="btn" href="uzklausa.html">Užsakyti matavimą</a>
-    </div>
-    <dl class="close-tb">
-      <div><dt class="tb-k">Telefonas <span class="demo">[DEMO]</span></dt><dd><a href="tel:+37060000000">+370 600 00000</a></dd></div>
-      <div><dt class="tb-k">El. paštas <span class="demo">[DEMO]</span></dt><dd><a href="mailto:info@vitra.example">info@vitra.example</a></dd></div>
-      <div><dt class="tb-k">Aptarnaujame <span class="demo">[DEMO]</span></dt><dd>Kauną, Vilnių ir 50 km aplink</dd></div>
-    </dl>
+  <div class="cs-side">
+    <a class="btn" href="uzklausa.html#forma">Užsakyti matavimą</a>
+    <a class="cs-phone" href="tel:+37060000000">+370 600 00000</a>
+    <span class="muted">Salonas Kaune, I–V 8–17 val. <span class="demo">[DEMO]</span></span>
   </div>
 </section>

@@ -137,11 +137,26 @@ test.describe('configuration hand-off @config-handoff', () => {
     await expect(page.locator('input[name="konfiguracijos_nuoroda"]')).toHaveValue(/konfiguratorius\.html\?w=1200/);
   });
 
-  test('schedule row opens its type in the configurator', async ({ page }) => {
-    await page.goto('');
-    await page.getByTestId('schedule').getByRole('link', { name: /Konfigūruoti L-3/ }).click();
+  test('series page "Konfigūruoti" opens the series preset', async ({ page }) => {
+    await page.goto('langai-lumen.html');
+    await page.getByTestId('series-configure').click();
     await expect(page.getByTestId('cfg-w')).toHaveValue('2400');
     await expect(page.locator('input[name="m"][value="aliuminis"]')).toBeChecked();
+    await expect(page.getByTestId('cfg-o0')).toHaveValue('s');
+  });
+
+  test('opening-type link opens the configurator with that type', async ({ page }) => {
+    await page.goto('langai.html');
+    await page.getByTestId('type-link').filter({ has: page.locator('strong', { hasText: /^Verčiamas$/ }) }).first().click();
+    await expect(page.locator('[data-sash]')).toHaveCount(1);
+    await expect(page.getByTestId('cfg-o0')).toHaveValue('v');
+  });
+
+  test('door enquiry carries the product into the quote form', async ({ page }) => {
+    await page.goto('durys.html');
+    await page.getByTestId('door-cta').nth(1).click();
+    await expect(page.getByTestId('quote-product')).toContainText('Terra');
+    await expect(page.locator('input[name="produktas"]')).toHaveValue(/Terra/);
   });
 
   test('hero dimensions submit into the configurator', async ({ page }) => {
@@ -252,20 +267,20 @@ test.describe('quote form @quote-form', () => {
 // ---------- Materials ----------
 test.describe('materials comparison @materials', () => {
   test('accessible table with three materials and row headers', async ({ page }) => {
-    await page.goto('medziagos.html');
+    await page.goto('langai.html');
     const t = page.getByTestId('materials-table');
     await expect(t.locator('thead th[scope="col"]')).toHaveCount(4);
     expect(await t.locator('tbody th[scope="row"]').count()).toBeGreaterThanOrEqual(6);
   });
   test('"Konfigūruoti iš …" preselects the material', async ({ page, isMobile }) => {
-    await page.goto('medziagos.html');
+    await page.goto('langai.html');
     if (isMobile) await page.getByTestId('compare-b').selectOption('aliuminis');
     await page.getByRole('link', { name: 'Konfigūruoti iš aliuminio' }).click();
     await expect(page.locator('input[name="m"][value="aliuminis"]')).toBeChecked();
   });
   test('mobile: choose two materials to compare', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'mobile only');
-    await page.goto('medziagos.html');
+    await page.goto('langai.html');
     const col = m => page.getByTestId('materials-table').locator(`thead [data-col="${m}"]`);
     await expect(col('aliuminis')).toBeHidden();
     await page.getByTestId('compare-b').selectOption('aliuminis');
@@ -330,7 +345,7 @@ test.describe('project gallery @gallery', () => {
 
 // ---------- Mobile usability ----------
 test.describe('mobile usability @mobile', () => {
-  const PAGES = ['', 'konfiguratorius.html', 'medziagos.html', 'projektai.html', 'uzklausa.html'];
+  const PAGES = ['', 'langai.html', 'langai-norma.html', 'durys.html', 'konfiguratorius.html', 'projektai.html', 'uzklausa.html'];
   test('no horizontal scroll at 360 px', async ({ browser }) => {
     const ctx = await browser.newContext({ viewport: { width: 360, height: 740 }, isMobile: true, hasTouch: true });
     const page = await ctx.newPage();
@@ -344,7 +359,7 @@ test.describe('mobile usability @mobile', () => {
 
   test('main controls are at least 44 px tall', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'mobile only');
-    for (const p of ['konfiguratorius.html', 'projektai.html', 'uzklausa.html', '']) {
+    for (const p of ['konfiguratorius.html', 'projektai.html', 'uzklausa.html', '', 'langai-silva.html', 'durys.html']) {
       await page.goto(p || './');
       const small = await page.evaluate(() => [...document.querySelectorAll('main button, main select, main input:not([type=hidden]):not([type=checkbox]):not([type=radio]):not([name=_gotcha]), main .choice span')]
         .filter(el => el.offsetParent !== null).map(el => [el.outerHTML.slice(0, 60), el.getBoundingClientRect().height]).filter(([, h]) => h < 43.5));
@@ -359,5 +374,75 @@ test.describe('mobile usability @mobile', () => {
     await page.getByTestId('cfg-q').fill('3');
     await expect(page.getByTestId('cfg-price')).toBeInViewport();
     await expect(page.getByTestId('cfg-elev')).toBeInViewport();
+  });
+});
+
+// ---------- Catalogue ----------
+test.describe('catalogue @catalog', () => {
+  test('Langai lists the three series with working pages', async ({ page }) => {
+    await page.goto('langai.html');
+    const links = page.getByTestId('series-link');
+    await expect(links).toHaveCount(3);
+    for (const href of await links.evaluateAll(as => as.map(a => a.href))) expect((await page.request.get(href)).status()).toBe(200);
+  });
+
+  test('series swatch recolours the render and updates the configure link', async ({ page }) => {
+    await page.goto('langai-norma.html');
+    const sw = page.getByTestId('swatch').nth(1);
+    await sw.click();
+    await expect(sw).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('swatch').first()).toHaveAttribute('aria-pressed', 'false');
+    await expect.poll(() => page.getByTestId('product-render').locator('svg:not(.wipe)').evaluate(s => s.style.getPropertyValue('--frame').trim().toUpperCase())).toBe('#3B4045');
+    await expect(page.getByTestId('series-configure')).toHaveAttribute('href', /c=antracitas/);
+    await expect(page.getByTestId('spec-table').locator('tr')).toHaveCount(7);
+  });
+
+  test('home series band swatches recolour their own render only', async ({ page }) => {
+    await page.goto('');
+    const band = page.locator('.sb').nth(1);
+    await band.getByTestId('swatch').nth(1).click();
+    await expect.poll(() => band.locator('[data-render] svg:not(.wipe)').evaluate(s => s.style.getPropertyValue('--frame').trim())).toBe('#F4F4F0');
+    const other = await page.locator('.sb').nth(0).locator('[data-render] svg').first().evaluate(s => s.style.getPropertyValue('--frame').trim());
+    expect(other).toBe('#F4F4F0');
+  });
+
+  test('Durys shows three door lines with specs', async ({ page }) => {
+    await page.goto('durys.html');
+    await expect(page.locator('.door')).toHaveCount(3);
+    await expect(page.locator('.spec-mini').first().locator('div')).toHaveCount(3);
+  });
+
+  test('old materials URL forwards to the comparison', async ({ page }) => {
+    await page.goto('medziagos.html');
+    await expect(page).toHaveURL(/langai\.html#palyginimas/);
+  });
+});
+
+// ---------- Motion ----------
+test.describe('motion @motion', () => {
+  test('signature tilt-and-turn plays once and leaves the sash closed', async ({ page }) => {
+    await page.goto('');
+    const sash = page.locator('[data-sash]');
+    await expect(page.locator('html')).not.toHaveClass(/tilt-pending/, { timeout: 4000 });
+    await expect.poll(() => sash.evaluate(el => el.getAnimations().length), { timeout: 5000 }).toBe(0);
+    expect(await sash.evaluate(el => getComputedStyle(el).transform)).toMatch(/^(none|matrix\(1, 0, 0, 1, 0, 0\))$/);
+    expect(await page.evaluate(() => sessionStorage.getItem('vitra.tilt'))).toBe('1');
+  });
+
+  test('reduced motion: no tilt, no masks, content visible', async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: 'reduce' });
+    const page = await ctx.newPage();
+    await page.goto('./');
+    await expect(page.locator('html')).not.toHaveClass(/tilt-pending|reveal-ready/);
+    expect(await page.locator('[data-sash]').evaluate(el => el.getAnimations().length)).toBe(0);
+    const clip = await page.locator('[data-reveal]').first().evaluate(el => getComputedStyle(el).clipPath);
+    expect(clip).toBe('none');
+    await ctx.close();
+  });
+
+  test('hero swatch recolours the window frame', async ({ page }) => {
+    await page.goto('');
+    await page.getByTestId('hero-frame').locator('xpath=../..').getByTestId('swatch').nth(1).click();
+    await expect(page.getByTestId('hero-frame')).toHaveAttribute('style', /--frame:\s*#3B4045/i);
   });
 });

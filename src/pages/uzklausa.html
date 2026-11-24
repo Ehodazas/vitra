@@ -5,7 +5,7 @@
 </section>
 
 <div class="wrap q-grid">
-  <form class="q-form sheet" data-testid="quote-form" method="post" data-endpoint="" novalidate>
+  <form class="q-form sheet" id="forma" data-testid="quote-form" method="post" data-endpoint="" novalidate>
     <section class="q-config" data-testid="quote-config" aria-labelledby="q-config-h">
       <h2 id="q-config-h" class="q-h" tabindex="-1">Pridėta konfigūracija</h2>
       <div data-config-body>
@@ -14,6 +14,8 @@
       <input type="hidden" name="konfiguracija" value="">
       <input type="hidden" name="konfiguracijos_nuoroda" value="">
       <input type="hidden" name="orientacine_kaina" value="">
+      <p class="q-product" data-testid="quote-product" hidden></p>
+      <input type="hidden" name="produktas" value="">
     </section>
 
     <fieldset class="q-fields">

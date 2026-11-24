@@ -1,15 +1,49 @@
 {
   "mode": "demo",
   "basePath": "/",
-  "pages": ["", "konfiguratorius.html", "medziagos.html", "projektai.html", "uzklausa.html", "privatumas.html", "saltiniai.html"],
-  "requiredFeatures": ["@navigation", "@configurator", "@pricing", "@materials", "@gallery", "@quote-form", "@config-handoff", "@mobile"],
-  "integrationFeatures": ["@quote-form"],
+  "pages": [
+    "",
+    "langai.html",
+    "langai-norma.html",
+    "durys.html",
+    "konfiguratorius.html",
+    "projektai.html",
+    "uzklausa.html",
+    "privatumas.html",
+    "saltiniai.html"
+  ],
+  "requiredFeatures": [
+    "@navigation",
+    "@catalog",
+    "@configurator",
+    "@pricing",
+    "@materials",
+    "@gallery",
+    "@quote-form",
+    "@config-handoff",
+    "@motion",
+    "@mobile"
+  ],
+  "integrationFeatures": [
+    "@quote-form"
+  ],
   "integration": {
     "endpointHost": "formspree.io",
     "testEmailPattern": "\\+qa@|^qa@",
     "clientEmails": []
   },
-  "preview": { "build": "node scripts/pages.mjs", "serve": "node scripts/serve.mjs . 4173", "url": "http://127.0.0.1:4173" },
-  "lighthouseMin": { "performance": 90, "accessibility": 90, "best-practices": 90, "seo": 90 },
-  "sourceDirs": ["."]
+  "preview": {
+    "build": "node scripts/pages.mjs",
+    "serve": "node scripts/serve.mjs . 4173",
+    "url": "http://127.0.0.1:4173"
+  },
+  "lighthouseMin": {
+    "performance": 90,
+    "accessibility": 90,
+    "best-practices": 90,
+    "seo": 90
+  },
+  "sourceDirs": [
+    "."
+  ]
 }

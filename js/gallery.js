@@ -53,11 +53,11 @@ function init() {
     const btn = e.target.closest('.proj-open'); if (!btn) return;
     const art = btn.closest('.proj');
     opener = btn;
-    title.textContent = `${art.querySelector('.proj-mark').textContent} ${art.querySelector('.proj-title').textContent}`;
+    title.textContent = art.querySelector('.proj-title').textContent;
     const img = art.querySelector('img');
     const full = (img.getAttribute('srcset') || '').split(',').map(s => s.trim().split(' ')[0]).pop() || img.src;
     body.innerHTML = `<img src="${full}" alt="${img.alt}" width="${img.width ? img.getAttribute('width') : ''}" height="${img.getAttribute('height')}" class="dlg-img">
-      <div class="dlg-text"><p class="muted">${art.querySelector('.proj-cap .muted').textContent} · ${art.querySelector('.proj-tags').textContent}</p></div>`;
+      <div class="dlg-text"><p class="muted">${art.querySelector('.proj-tags').textContent}</p></div>`;
     body.querySelector('.dlg-text').append(art.querySelector('template').content.cloneNode(true));
     dlg.showModal();
   });

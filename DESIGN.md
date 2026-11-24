@@ -1,76 +1,71 @@
-# DESIGN.md – VITRA (demo brand)
+# DESIGN.md – VITRA (demo brand) · v2 „Product catalogue“
 
-> Single source of truth. ≤100 lines. Product facts: PRODUCT.md.
+> Single source of truth. ≤100 lines. Product facts: PRODUCT.md. v1 (drawing set) replaced 2026-11-24.
 
 ## Business
 - Offer: windows and doors (PVC, timber, aluminium) – manufacture + installation, Lithuania. Demo brand.
 - Goal: quote requests carrying a configured window. Site-wide CTA „Užsakyti matavimą“; configurator CTA „Apskaičiuoti kainą“; form „Siųsti užklausą“.
-- Audience: homeowners building/renovating, small architects/contractors; mobile-first, afraid of hidden costs and bad fitting.
-- Content status: demo site – every fact/price/project marked [DEMO]; qa.config.json mode: demo.
+- Audience: homeowners building/renovating, small architects; mobile-first; afraid of hidden costs and bad fitting.
+- Content status: demo site – every fact/price/project/series name marked [DEMO]; qa.config.json mode: demo.
 
 ## Business functionality
-| Feature | Behaviour | Data / integration | Test tag |
+| Feature | Behaviour | Data | Test tag |
 |---|---|---|---|
-| Navigation | header + mobile menu (Esc, focus return), current page, skip link | – | @navigation |
-| Configurator | width/height mm (field + stepper), material, colour per material, opening type per sash (1–3), glazing 2/3, quantity; scale-true SVG elevation with dimension chains + 1,75 m figure; limits per material with LT errors; state in URL + localStorage | `js/catalog.js` [DEMO] | @configurator |
-| Price estimate | pure `estimate()`; area (min billable) × material rate + sash/opening extras + colour % + triple-glazing/m² + installation/unit; VAT 21 % shown; range ±15 % rounded to 10 €; „Kaip skaičiuojame“ breakdown + exclusions | `js/pricing.js` [DEMO] rates | @pricing |
-| Materials comparison | one `<table>` PVC/mediena/aliuminis, qualitative rows; mobile: pick two to compare; „Konfigūruoti iš …“ links preselect material | – | @materials |
-| Project gallery | all projects in HTML; filters material/product/building (aria-pressed, URL), live count, empty state + reset, `<dialog>` detail with focus return | static HTML [DEMO] | @gallery |
-| Quote form | config summary (edit/remove) + hidden fields; name, phone or email, city, stage, message, consent; fetch to Formspree; success **only** on confirmed OK; error keeps data + retry + phone/email; no-JS native POST. Endpoint unconfigured → honest „neprijungta“ error, nothing sent | Formspree (ID pending) | @quote-form |
-| Config hand-off | configurator → quote carries exact config; schedule/materials links prefill configurator | URL params | @config-handoff |
-| Mobile usability | no horizontal scroll 360–1920, targets ≥44 px, sticky compact preview | – | @mobile |
-| Analytics/consent | none → no banner | – | – |
+| Navigation | Langai · Durys · Konfigūratorius · Projektai · Kontaktai + CTA; mobile menu (Esc, focus return), current page, skip link | – | @navigation |
+| Catalogue | langai.html (3 window series, opening types, materials table), durys.html (3 door lines), product page per window series: swatches recolour the render (aria-pressed), specs, profile section, „Konfigūruoti“ preset | `js/products.js` [DEMO] | @catalog |
+| Configurator | as v1: mm inputs + steppers, material, colour, opening per sash, glazing, qty; scale drawing + 1,75 m figure; URL + localStorage | `js/catalog.js` [DEMO] | @configurator |
+| Price estimate | as v1, unchanged formula and breakdown | `js/pricing.js` [DEMO] | @pricing |
+| Materials comparison | table moved to langai.html#palyginimas; mobile pick-two; medziagos.html forwards there | – | @materials |
+| Project gallery | as v1: filters (URL), count, empty state, dialog | `js/data.js` [DEMO] | @gallery |
+| Quote form | as v1 + optional product field from door/series pages; success only on confirmed 2xx; unconfigured → honest error | Formspree (ID pending) | @quote-form |
+| Config hand-off | configurator ↔ quote, series/door → quote/configurator, „Jūsų langas“ strip | URL | @config-handoff |
+| Motion | signature tilt-and-turn on home hero, swatch wipes, mask reveals; all off under reduced motion | Web Animations API, no library | @motion |
+| Mobile usability | no horizontal scroll 360–1920, targets ≥44 px, sticky configurator preview | – | @mobile |
 
 ## Acceptance criteria
-- [x] `npm run gate:final` exits 0; all tags above have passing tests in mobile + desktop.
-- [x] Pricing unit tests: fixed inputs → expected totals; range contains total; invalid sizes → no price.
-- [x] Pasted configurator URL restores the identical configuration and price.
-- [x] Quote form never shows success without a confirmed 2xx from the endpoint (tested with mocked OK and mocked failure; unconfigured shows error).
-- [ ] Real [QA TEST] submission once Formspree ID exists (manual, own inbox) – DEFERRED, see log.
-- [x] Keyboard-only: configure, filter, open/close dialog, submit. Visible focus everywhere.
-- [x] No horizontal scroll 360–1920 px; tap targets ≥44 px; contrast ≥4.5:1.
+- [x] `npm run gate:final` exits 0; every tag above passes in mobile + desktop.
+- [x] v1 functionality intact: pricing totals, URL restore, quote never fakes success, filters, dialog.
+- [x] Swatch change updates render colour, aria-pressed and the „Konfigūruoti“ link colour parameter.
+- [x] prefers-reduced-motion: no transforms/animations; content fully visible without JS.
+- [x] Homepage JS ≤ 45 KB gzip (no animation library); Lighthouse ≥ 90/90/90/90 on main pages.
 - [x] Only the LCP image per page has fetchpriority="high"; nothing above the fold lazy; all images sized.
-- [x] Lighthouse ≥ 90/90/90/90 (perf/a11y/bp/seo) on every page.
-- [x] Registry reviewed; overlaps justified below.
+- [ ] Real [QA TEST] submission once Formspree ID exists – DEFERRED (see log) (endpoint intentionally unconfigured).
 
 ## Brand
-- Adjectives: exact, calm, candid. Voice: „jūs“, plain facts, no slogans, no exclamation marks.
-- Assets: none real. Photos: licensed stock (Unsplash/Pexels), credited on `saltiniai.html`, marked [DEMO].
+- Adjectives: calm, exact, tactile. Voice: „jūs“, plain facts, no slogans, no exclamation marks.
+- Series names [DEMO]: langai Norma (PVC), Silva (mediena), Lumen (aliuminis); durys Porta (lauko), Terra (slankiojamos terasos), Aura (balkono).
+- Photos: Unsplash (credited on saltiniai.html, origin embedded in files); product renders drawn from the configurator engine.
 
-## Concept – Architect's drawing set
-- One sentence: the site is a set of construction drawings for your window – elevations, dimension chains and a window schedule are the layout, not decoration.
-- First viewport: a full-width elevation of a three-part window; its glazing holds the house photo. The dimension figures on the drawing **are the inputs** – type a width, the drawing and estimate redraw. H1 + material + price sit in the sheet's title block (bottom right on desktop, below the drawing on mobile).
-- Structure: home = elevation sheet → window schedule (real table, rows draw their type mini-elevation, „Konfigūruoti šį tipą“) → material hatch legend (hatch swatch + one trade-off line) → projects as photo + key elevation pairs at unequal sizes → lead-time dimension line (time measured like length) → title-block close.
-- Signature: editable dimension chains; opening-type symbols (hinge chevrons, tilt triangles, slide arrows) drawn per sash exactly as in drawings.
-- Line language: three weights (cut 3 px, view 1.5 px, dimension 1 px) + solid poché graphite fields. No uniform hairline rules between rows, no monospace anywhere. Annotations in Sofia Sans Condensed, used only inside drawings and table heads.
-- Registry: differs from Ąžuolo v2 (no split hero, no ruled fact rows, no serif) and Terasų (no full-bleed photo, no numbered chapters, no dot ratings, cross-sections only on materials page as profile details). Type marks (L-1, D-1) appear only where functional (schedule, project keys). Warm-white + graphite palette is user-pinned; no earthy accent.
+## Concept – Nordic manufacturer catalogue
+- One sentence: a printed product catalogue brought to life – calm photography, product spreads, and windows you can recolour and open.
+- First viewport: large serif H1 top-left overlapping the left jamb of a real-looking window frame (cols 6–12) that holds the interior photo; frame colour swatches (balta / antracitas / ąžuolas) under it recolour the frame; two category entries (Langai, Durys) bottom-left.
+- Signature: tilt-and-turn – on first load the hero sash tilts in, turns and settles while the photo comes into focus (once per session). Same gesture, small, on product hover.
+- From A: interactive colour/material swatches recolour product renders with a clip-path wipe; series renders morph into the product page (View Transitions).
+- Structure: home = hero → series band (renders on plinths, unequal) → dark opening-type + configurator band → doors feature → project mosaic → contact strip. Technical drawings only in configurator + specs.
+- Registry: differs from Juvelyrika (no clean split; H1 overlaps a literal sash, swatches) and from v1/Ąžuolo v2/Terasų (no hairline sheets, no numbered chapters, no full-bleed gradient hero). Cool white + anthracite + glass green, not warm paper + earthy accent.
 
 ## Tokens
 | Token | Value | Note |
 |---|---|---|
-| --paper / --sheet | #F3F0EA / #FCFBF8 | drawing paper / sheet |
-| --ink / --ink-2 | #222528 / #565B60 | graphite text 13.5:1 / 6.0:1 on paper |
-| --poche | #2C3034 | solid cut fields, primary button |
-| --pencil-blue | #1F4C99 | links, focus, selection, live dims only; 7.2:1 |
-| --line-cut / view / dim | 3px / 1.5px / 1px | drawing weights |
-| --font-display | Sofia Sans Extra Condensed 700–800 | latin-ext, self-hosted |
-| --font-body | Sofia Sans 400–600 | latin-ext |
-| --font-note | Sofia Sans Condensed 500–600 | drawing annotations, table heads |
-| --step-0…6 | clamp(), base 1.0625rem body | display up to ~7rem |
-| --space-1…8 | 4·8·12·16·24·40·64·104 px | radius 0 (sheets), 2px inputs |
+| --bg / --surface / --stone | #F6F6F3 / #FFFFFF / #E9E9E4 | cool white, plinth stone |
+| --ink / --ink-2 | #1D2023 / #585D63 | 15.1:1 / 6.1:1 on bg |
+| --dark / --on-dark-2 | #23272B / #B9BEC3 | anthracite bands |
+| --glass / --glass-wash | #2B6A5C / #E2EEEA | accent: links, focus, selected; 5.8:1 |
+| --font-display | Hedvig Letters Serif 400 | latin-ext, self-hosted |
+| --font-ui | Albert Sans 400–700 | body, UI, figures (tabular) |
+| --radius | 2px controls, 0 images | frames are square |
+| --ease | cubic-bezier(.2,.7,.1,1) | motion 240–900 ms |
 
 ## Layout, motion, imagery
-- Breakpoints 390 / 768 / 1024 / 1440. Sheet grid: 12 columns with a 2-column title-block lane on wide screens.
-- First mobile screen: H1, elevation with editable width/height, „Apskaičiuoti kainą“.
-- Motion: none beyond preview redraw; prefers-reduced-motion respected.
-- Imagery: architecture only (facades, openings, interiors with light); no workers, no stock smiles.
+- Breakpoints 390 / 768 / 1024 / 1440. 12-col grid, generous outer margin, varied spans (no equal card rows).
+- Motion: one signature (Web Animations API, home only), CSS for the rest; offscreen sections use content-visibility for speed; IntersectionObserver reveals once; parallax ≤ 12 px desktop only; no scroll hijack; reduced motion = static.
+- Imagery: interiors with daylight, hardware details, doors as objects; no workers, no stock smiles.
 
 ## Pages
-index · konfiguratorius · medziagos · projektai · uzklausa · privatumas · saltiniai · 404
+index · langai · langai-norma · langai-silva · langai-lumen · durys · konfiguratorius · projektai · uzklausa (Kontaktai) · privatumas · saltiniai · 404 · medziagos (forward)
 
 ## Decisions log
-- 2026-11-24 – Architect's drawing set chosen over Kaunas facade – user decision.
-- 2026-11-24 – Static multi-page, Formspree unconfigured, mode demo – user decision.
-- 2026-11-24 – Real Formspree submission deferred: endpoint intentionally unconfigured (user); form shows honest „neišsiųsta“ error.
-- 2026-11-24 – Desktop hero keeps H1 in a top band (finish review): a 4-col title block would shrink the display heading.
-- 2026-11-24 – Impeccable hook left unwired (needs project settings write); manual `detect` run instead.
+- 2026-11-24 – v1 drawing set built and published (GitHub Pages).
+- 2026-11-24 – v2 redesign: direction B (catalogue) + A's swatches/transitions – user decision. Kept: configurator, pricing, hand-off, quote honesty, filters, tests.
+- 2026-11-24 – Real Formspree submission deferred: endpoint intentionally unconfigured (user).
+- 2026-11-24 – Impeccable hook left unwired; manual `detect` run instead.

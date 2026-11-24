@@ -7,12 +7,12 @@
 .m-detail { margin: 0; padding: var(--s4); display: grid; gap: var(--s3); }
 .m-detail svg { width: 100%; height: auto; }
 .m-detail figcaption { display: grid; gap: 4px; border-top: var(--line-view) solid var(--ink); padding-top: var(--s3); }
-.m-detail strong { font-family: var(--font-display); font-size: var(--step-2); font-weight: 750; line-height: 1; }
+.m-detail strong { font-family: var(--font-display); font-size: var(--step-2); font-weight: 400; line-height: 1; }
 .det .glass-pane { fill: #DCE4E8; }
 .det .pane { stroke: var(--ink); stroke-width: 1.5; }
-.det .cut-fill-light { fill: var(--sheet); stroke: var(--ink); stroke-width: 3; }
+.det .cut-fill-light { fill: var(--surface); stroke: var(--ink); stroke-width: 3; }
 .det .chamber { fill: none; stroke: var(--ink); stroke-width: 1.2; }
-.det .poche { fill: var(--poche); }
+.det .poche { fill: var(--ink); }
 .det .outline { stroke: var(--ink); stroke-width: 3; }
 .det .lam { stroke: var(--ink); stroke-width: 1.5; }
 .m-detail text { font: 600 11px var(--font-note); fill: var(--ink); }
@@ -26,7 +26,7 @@
 .m-table tbody tr + tr > * { border-top: var(--line-dim) solid rgba(34, 37, 40, 0.35); }
 .m-table tbody th { font-family: var(--font-note); font-weight: 650; color: var(--ink-2); width: 22%; }
 .m-table td + td, .m-table th + td, .m-table thead th + th { border-left: var(--line-view) solid var(--ink); }
-.m-name { display: block; font-family: var(--font-display); font-size: var(--step-3); font-weight: 750; line-height: 1; color: var(--ink); }
+.m-name { display: block; font-family: var(--font-display); font-size: var(--step-3); font-weight: 400; line-height: 1; color: var(--ink); }
 .m-hatch { width: 40px; height: 40px; margin-top: var(--s2); }
 .m-table tfoot > tr > * { border-top: var(--line-cut) solid var(--ink); }
 .m-table tfoot a { font-weight: 650; min-height: 44px; display: inline-flex; align-items: center; }

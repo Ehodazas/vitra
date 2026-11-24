@@ -24,6 +24,7 @@ export function elevation(cfg, opts = {}) {
   const parts = [];
   const glass = [];
   const symbols = [];
+  const handles = [];
 
   // Frame and sashes
   parts.push(`<rect x="0" y="0" width="${W}" height="${H}" fill="${colour.hex}" class="cut"/>`);
@@ -51,6 +52,26 @@ export function elevation(cfg, opts = {}) {
       const x0 = gx + gw / 2 - dir * a, x1 = gx + gw / 2 + dir * a;
       L([[x0, y], [x1, y]]); L([[x1 - dir * a * 0.35, y - a * 0.22], [x1, y], [x1 - dir * a * 0.35, y + a * 0.22]]);
     }
+    // Handle position for product renders (opposite the hinge side)
+    if (t !== 'n') {
+      const hw = Math.max(sp * 0.42, 14), hl = Math.min(170, gh * 0.18);
+      const yMid = inY + inH / 2;
+      if (t === 'vl' || t === 'kl') handles.push([cx + colW - sp / 2 - hw / 2, yMid - hl / 2, hw, hl]);
+      else if (t === 'vr' || t === 'kr') handles.push([cx + sp / 2 - hw / 2, yMid - hl / 2, hw, hl]);
+      else if (t === 'v') handles.push([cx + colW / 2 - hl / 2, inY + sp / 2 - hw / 2, hl, hw]);
+      else if (t === 's') handles.push([(i % 2 === 0 ? cx + colW - sp / 2 : cx + sp / 2) - hw / 2, yMid - hl / 2, hw, hl * 1.4]);
+    }
+  }
+
+  if (opts.render) {
+    // Product render: shaded glass, profile edges, handles; no symbols or dimensions.
+    const pad = Math.max(W, H) * 0.04;
+    const svg = `<svg viewBox="${-pad} ${-pad} ${W + 2 * pad} ${H + 2 * pad}" role="img" aria-label="${esc(opts.title || 'Lango vaizdas')}" xmlns="http://www.w3.org/2000/svg" class="render-svg" style="--frame:${colour.hex}">
+  <defs><linearGradient id="${id}gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E9F0F1"/><stop offset=".46" stop-color="#C9D8DB"/><stop offset=".5" stop-color="#DDE7E8"/><stop offset="1" stop-color="#A9BEC3"/></linearGradient></defs>
+  ${parts.join('').replace(/fill="#[0-9A-Fa-f]{6}"/g, 'style="fill:var(--frame)"').replace(/class="(cut|view)"/g, 'class="pf"')}
+  <g fill="url(#${id}gl)" class="rglass">${glass.join('')}</g>
+  <g class="rhandle">${handles.map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${Math.min(w, h) / 2}"/>`).join('')}</g></svg>`;
+    return { svg, ar: (W + 2 * pad) / (H + 2 * pad), anchors: {} };
   }
 
   const photo = opts.photo

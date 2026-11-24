@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Užklausa ir matavimo užsakymas – VITRA</title>
 <meta name="description" content="Užsakykite angų matavimą ir pridėkite konfigūratoriuje sudarytą langą. Po matavimo parengiame žiniaraštį su tikslia kaina.">
-<link rel="canonical" href="https://vitra.example/uzklausa.html">
+<link rel="canonical" href="https://ehodazas.github.io/vitra/uzklausa.html">
 <meta property="og:title" content="Užklausa ir matavimo užsakymas – VITRA">
 <meta property="og:description" content="Užsakykite angų matavimą ir pridėkite konfigūratoriuje sudarytą langą. Po matavimo parengiame žiniaraštį su tikslia kaina.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="lt_LT">
-<meta name="theme-color" content="#F3F0EA">
+<meta name="theme-color" content="#F6F6F3">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/sofia-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/hedvig-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/albert-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/quote.css">
 </head>
@@ -22,11 +22,11 @@
 <p class="demo-bar">Demonstracinė svetainė: <span class="demo-long">VITRA – išgalvotas prekės ženklas, kainos ir projektai pavyzdiniai</span><span class="demo-short">duomenys pavyzdiniai</span>. <a href="saltiniai.html">Daugiau</a></p>
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="./"><svg viewBox="0 0 26 30" aria-hidden="true"><rect x="1.5" y="1.5" width="23" height="27" fill="none" stroke="currentColor" stroke-width="3"/><line x1="13" y1="3" x2="13" y2="27" stroke="currentColor" stroke-width="1.5"/><polyline points="24,3 3,15 24,27" fill="none" stroke="currentColor" stroke-width="1"/></svg>VITRA</a>
+    <a class="brand" href="./"><svg viewBox="0 0 24 30" aria-hidden="true"><rect x="1.25" y="1.25" width="21.5" height="27.5" fill="none" stroke="currentColor" stroke-width="2.5"/><g class="brand-sash"><rect x="5" y="5" width="14" height="20" fill="none" stroke="currentColor" stroke-width="1.5"/></g></svg><span class="brand-word">VITRA</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="meniu" data-testid="nav-toggle">Meniu</button>
     <nav class="nav" id="meniu" aria-label="Pagrindinis" data-testid="nav-menu">
-      <ul><li><a href="konfiguratorius.html">Konfigūratorius</a></li><li><a href="medziagos.html">Medžiagos</a></li><li><a href="projektai.html">Projektai</a></li></ul>
-      <a class="btn" href="uzklausa.html" aria-current="page">Užsakyti matavimą</a>
+      <ul><li><a href="langai.html">Langai</a></li><li><a href="durys.html">Durys</a></li><li><a href="konfiguratorius.html">Konfigūratorius</a></li><li><a href="projektai.html">Projektai</a></li><li><a href="uzklausa.html" aria-current="page">Kontaktai</a></li></ul>
+      <a class="btn" href="uzklausa.html#forma">Užsakyti matavimą</a>
     </nav>
   </div>
 </header>
@@ -38,7 +38,7 @@
 </section>
 
 <div class="wrap q-grid">
-  <form class="q-form sheet" data-testid="quote-form" method="post" data-endpoint="" novalidate>
+  <form class="q-form sheet" id="forma" data-testid="quote-form" method="post" data-endpoint="" novalidate>
     <section class="q-config" data-testid="quote-config" aria-labelledby="q-config-h">
       <h2 id="q-config-h" class="q-h" tabindex="-1">Pridėta konfigūracija</h2>
       <div data-config-body>
@@ -47,6 +47,8 @@
       <input type="hidden" name="konfiguracija" value="">
       <input type="hidden" name="konfiguracijos_nuoroda" value="">
       <input type="hidden" name="orientacine_kaina" value="">
+      <p class="q-product" data-testid="quote-product" hidden></p>
+      <input type="hidden" name="produktas" value="">
     </section>
 
     <fieldset class="q-fields">
@@ -123,17 +125,13 @@
 </div>
 </main>
 <footer class="site-foot">
-  <div class="wrap">
-    <div class="title-block">
-      <div><span class="tb-name">VITRA</span><p class="muted" style="margin:8px 0 0">Langai ir durys iš PVC, medienos ir aliuminio. Gamyba ir montavimas. <span class="demo">[DEMO]</span></p></div>
-      <div><span class="tb-k">Kontaktai <span class="demo">[DEMO]</span></span>
-        <ul><li><a href="tel:+37060000000">+370 600 00000</a></li><li><a href="mailto:info@vitra.example">info@vitra.example</a></li><li>Pramonės g. 0, Kaunas</li></ul></div>
-      <div><span class="tb-k">Puslapiai</span>
-        <ul><li><a href="konfiguratorius.html">Lango konfigūratorius</a></li><li><a href="medziagos.html">Medžiagų palyginimas</a></li><li><a href="projektai.html">Projektai</a></li><li><a href="uzklausa.html">Užklausa ir matavimas</a></li></ul></div>
-      <div><span class="tb-k">Darbo laikas <span class="demo">[DEMO]</span></span><p style="margin:0">I–V 8–17 val.</p></div>
-    </div>
-    <div class="foot-meta"><span>© 2026 VITRA (demonstracinis projektas)</span><a href="privatumas.html">Privatumo pranešimas</a><a href="saltiniai.html">Nuotraukų šaltiniai</a></div>
+  <div class="wrap foot-grid">
+    <div><p class="foot-brand">VITRA</p><p>Langai ir durys iš PVC, medienos ir aliuminio: gamyba, matavimas ir montavimas. <span class="demo">[DEMO]</span></p></div>
+    <div><span class="tb-k">Produktai</span><ul><li><a href="langai.html">Langai</a></li><li><a href="durys.html">Durys</a></li><li><a href="konfiguratorius.html">Konfigūratorius</a></li><li><a href="projektai.html">Projektai</a></li></ul></div>
+    <div><span class="tb-k">Kontaktai <span class="demo">[DEMO]</span></span><ul><li><a href="tel:+37060000000">+370 600 00000</a></li><li><a href="mailto:info@vitra.example">info@vitra.example</a></li><li><span>Pramonės g. 0, Kaunas</span></li></ul></div>
+    <div><span class="tb-k">Salonas <span class="demo">[DEMO]</span></span><p>I–V 8–17 val.<br>VI 10–14 val.</p></div>
   </div>
+  <div class="wrap foot-meta"><span>© 2026 VITRA (demonstracinis projektas)</span><a href="privatumas.html">Privatumo pranešimas</a><a href="saltiniai.html">Nuotraukų šaltiniai</a></div>
 </footer>
 <script type="module" src="js/site.js"></script>
 <script type="module" src="js/quote.js"></script>

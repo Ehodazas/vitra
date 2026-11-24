@@ -44,6 +44,13 @@ function init() {
     });
   }
   showConfig();
+  // Product chosen on a door or series page
+  const product = (params.get('produktas') || '').slice(0, 80);
+  if (product) {
+    const p = form.querySelector('[data-testid="quote-product"]');
+    p.textContent = `Domina: ${product}`; p.hidden = false;
+    form.produktas.value = product;
+  }
 
   const fields = {
     vardas: form.vardas, telefonas: form.telefonas, email: form.email, sutikimas: form.sutikimas,
