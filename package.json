@@ -1,0 +1,19 @@
+{
+  "name": "client-site-starter",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node scripts/serve.mjs . 5173",
+    "test:e2e": "playwright test",
+    "gate": "node scripts/gate.mjs",
+    "gate:final": "node scripts/gate.mjs --final",
+    "qa:shot": "node scripts/shot.mjs",
+    "qa:lh": "node scripts/lh.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1",
+    "chrome-launcher": "^1",
+    "lighthouse": "^12"
+  }
+}

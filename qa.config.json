@@ -1,0 +1,15 @@
+{
+  "mode": "client",
+  "basePath": "/",
+  "pages": [""],
+  "requiredFeatures": ["@navigation", "@contact-form"],
+  "integrationFeatures": ["@contact-form"],
+  "integration": {
+    "endpointHost": "formspree.io",
+    "testEmailPattern": "\\+qa@|^qa@",
+    "clientEmails": []
+  },
+  "preview": { "build": null, "serve": "node scripts/serve.mjs . 4173", "url": "http://127.0.0.1:4173" },
+  "lighthouseMin": { "performance": 85, "accessibility": 90, "best-practices": 90, "seo": 90 },
+  "sourceDirs": ["."]
+}
